@@ -1,3 +1,3 @@
 # basic-tetris
 
-<h1>still need some functionallty to remove and replace rows</h1>
+<h1>fixed all the bugs finally!!!</h1>

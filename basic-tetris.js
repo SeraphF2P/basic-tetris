@@ -17,11 +17,6 @@ for (let i = 150; i < 160; i++) {
     gridBoxs.push(box);
     grid === null || grid === void 0 ? void 0 : grid.appendChild(box);
 }
-function setBoard() {
-    for (let i = 0; i < 160; i++) {
-        gridBoxs[i].setAttribute('data-id', i.toString());
-    }
-}
 const lTetromino = [
     [1 + width, width * 2 + 1, width * 3 + 1, 2 + width],
     [width, width + 1, width + 2, width * 2 + 2],
@@ -92,6 +87,11 @@ for (let i = 0; i < 16; i++) {
     box.classList.add('box');
     nextTetrisDiplayBoxs.push(box);
     nextTetrisDiplay === null || nextTetrisDiplay === void 0 ? void 0 : nextTetrisDiplay.appendChild(box);
+}
+function setBoard() {
+    for (let i = 0; i < 160; i++) {
+        gridBoxs[i].setAttribute('data-id', i.toString());
+    }
 }
 const leftSide = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
 const rightSide = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99, 109, 119, 129, 139, 149];
@@ -193,48 +193,85 @@ for (let i = 140; i > 0; i -= width) {
     }
     matched.push(line);
 }
-// function checkForMatch(){
-//     for (let k = 0; k < matched.length; k++) {
-//        if(matched[k].every((a: { classList: { contains: (arg0: string) => any; }; }) => a.classList.contains('taken'))){
-//                matched[k].forEach(a => {
-//                 gridBoxs.forEach(t=>{
-//                 })
-//                 let box =document.createElement('div')
-//                 box.classList.add('box')
-//                 grid.prepend(box)
-//                 for (let i = 0; i < taken.length; i++) {
-//                     if(taken[i] == +a.getAttribute('data-id')){
-//                     taken[i] = null;
-//                     }
-//                     } 
-//                }); 
-//                setBoard()
-//        } 
-//     }
-// }
-// let score =0;
-// const scoreDisplay = document.querySelector('.score')
-// function addScore() {
-//     for (let i = 0; i < 150; i +=width) {
-//       let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
-//       if(row.every(index => gridBoxs[index].classList.contains('taken'))) {
-//         score +=10
-//         scoreDisplay.innerHTML = score.toString()
-//         row.forEach(index => {
-//           gridBoxs[index].setAttribute('class','box');
-//           for (let i = 0; i < taken.length; i++) {
-//             if(taken[i] == row[index]){
-//             taken[i] = null;
-//             }
-//             } 
-//         })
-//         let gridBoxsRemoved = gridBoxs.splice(i, width)
-//         gridBoxs = gridBoxsRemoved.concat(gridBoxs)
-//         gridBoxs.forEach(cell => grid.appendChild(cell))
-//         setBoard()
-//       }
-//     }
-//   }
+const score_board = document.querySelector('.score');
+let score = 0;
+function checkForMatch() {
+    for (let k = 0; k < matched.length; k++) {
+        if (matched[k].every((a) => a.classList.contains('taken'))) {
+            score += 100;
+            score_board.innerHTML = score.toString();
+            matched[k].forEach((a) => {
+                a.setAttribute('class', 'box');
+                for (let i = 0; i < taken.length; i++) {
+                    if (taken[i] == +a.getAttribute('data-id')) {
+                        taken[i] = null;
+                    }
+                }
+            });
+            row_fall_down();
+            //    setBoard()
+        }
+    }
+}
+function check_for_taken() {
+    taken = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159];
+    for (let i = 0; i < matched.length; i++) {
+        matched[i].forEach((a) => {
+            if (a.classList.contains('taken')) {
+                taken.push(Number(a.getAttribute('data-id')));
+            }
+        });
+    }
+}
+function row_fall_down() {
+    for (let i = 0; i < matched.length - 7; i++) {
+        if (matched[i].every((a) => { return a.getAttribute('class') == 'box'; }) && matched[i + 1].every((a) => { return a.getAttribute('class') == 'box'; }) == false) {
+            matched[i].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 1][index].getAttribute('class')}`);
+            });
+            matched[i + 1].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 2][index].getAttribute('class')}`);
+            });
+            matched[i + 2].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 3][index].getAttribute('class')}`);
+            });
+            matched[i + 3].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 4][index].getAttribute('class')}`);
+            });
+            matched[i + 4].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 5][index].getAttribute('class')}`);
+            });
+            matched[i + 5].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 6][index].getAttribute('class')}`);
+            });
+            matched[i + 6].forEach((div, index) => {
+                div.setAttribute('class', `${matched[i + 7][index].getAttribute('class')}`);
+            });
+        }
+    }
+}
+const scoreDisplay = document.querySelector('.score');
+function addScore() {
+    for (let i = 0; i < 150; i += width) {
+        let row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
+        if (row.every(index => gridBoxs[index].classList.contains('taken'))) {
+            score += 10;
+            scoreDisplay.innerHTML = score.toString();
+            row.forEach(index => {
+                gridBoxs[index].setAttribute('class', 'box');
+                for (let i = 0; i < taken.length; i++) {
+                    if (taken[i] == row[index]) {
+                        taken[i] = null;
+                    }
+                }
+            });
+            let gridBoxsRemoved = gridBoxs.splice(i, width);
+            gridBoxs = gridBoxsRemoved.concat(gridBoxs);
+            gridBoxs.forEach(cell => grid.appendChild(cell));
+            setBoard();
+        }
+    }
+}
 function fullDown(dir) {
     if (!tetro[dir].some((a) => { return taken.includes(startIndex + a + movment + width) && !firstRow.includes(startIndex + a + movment); })) {
         removeTet(movment);
@@ -251,14 +288,27 @@ function fullDown(dir) {
         changeTet();
         removeNext();
         showNext();
-        // checkForMatch()
+        checkForMatch();
+        check_for_taken();
         spawnNextTet(movment);
         youLose();
     }
 }
 showNext();
 changeTet();
-let timerId = setInterval(() => {
-    fullDown(posision);
-}, 200);
+let timerId;
+const start_pause = document.querySelector('.start');
+start_pause.addEventListener('click', () => {
+    if (timerId == null) {
+        timerId = setInterval(() => {
+            fullDown(posision);
+        }, 200);
+        document.addEventListener('keydown', movingTet);
+    }
+    else {
+        clearInterval(timerId);
+        timerId = null;
+        document.removeEventListener('keydown', movingTet);
+    }
+});
 //# sourceMappingURL=basic-tetris.js.map

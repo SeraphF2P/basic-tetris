@@ -1,13 +1,12 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
   padding-top: 50px;
+  background-image: url("./pexels-damir-mijailovic-3695238.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 body .backGroundImage {
   background-repeat: no-repeat;
@@ -21,50 +20,30 @@ body .backGroundImage {
   z-index: -3;
 }
 body .container {
-  display: -ms-grid;
   display: grid;
   width: 620px;
   margin-inline: auto;
-  -ms-grid-columns: 220px 400px;
   grid-template-columns: 220px 400px;
-      grid-template-areas: "a b" "d b" "c b";
+  grid-template-areas: "a b" "d b" "c b";
 }
 body .container .scoreDisplay {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
   width: 160px;
   height: 120px;
   background-color: rgba(255, 255, 255, 0.6);
   grid-area: d;
   margin-inline: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
 }
 body .container .grid {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 3;
-  -ms-grid-column: 2;
-  width: 400px;
-  height: 600px;
   border-radius: 10px;
   grid-area: b;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   outline: 4px solid;
   background-color: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: sepia(5px);
-          backdrop-filter: sepia(5px);
 }
 body .container .grid .box {
   width: 40px;
@@ -74,18 +53,13 @@ body .container .grid .lowerBorder {
   display: none;
 }
 body .container .nextTetris {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   width: 160px;
   height: 160px;
   background-color: rgba(255, 255, 255, 0.6);
   grid-area: a;
   border-radius: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   outline: 4px solid;
   margin-inline: auto;
 }
@@ -94,42 +68,43 @@ body .container .nextTetris .box {
   height: 40px;
 }
 body .container .start {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
   width: 150px;
   height: 60px;
   margin-inline: auto;
   background-color: green;
   grid-area: c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 1rem 4px rgb(0, 179, 0), inset 0px 0px 1rem -4px rgb(1, 75, 1);
+}
+body .container .start:active {
+  box-shadow: inset 0px 0px 1rem -4px rgb(0, 179, 0), inset 0px 0px 1rem 4px rgb(1, 75, 1);
 }
 
 .iTetromino {
   background-color: #ea1d2e;
-  -webkit-box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(200, 0, 0, 0.4);
-          box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(200, 0, 0, 0.4);
+  box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(200, 0, 0, 0.4);
 }
 
 .oTetromino {
   background-color: #3389b5;
-  -webkit-box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 0, 200, 0.4);
-          box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 0, 200, 0.4);
+  box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 0, 200, 0.4);
 }
 
 .zTetromino {
   background-color: #fcc433;
-  -webkit-box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgb(200, 200, 0);
-          box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgb(200, 200, 0);
+  box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgb(200, 200, 0);
 }
 
 .lTetromino {
   background-color: #318f31;
-  -webkit-box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 88, 0, 0.4);
-          box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 88, 0, 0.4);
+  box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(0, 88, 0, 0.4);
 }
 
 .tTetromino {
   background-color: #ad3a9c;
-  -webkit-box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(88, 0, 88, 0.4);
-          box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(88, 0, 88, 0.4);
-}
-/*# sourceMappingURL=basic-tetris.css.map */
+  box-shadow: inset 7px 7px 4px rgba(255, 255, 255, 0.6), inset -7px -7px 4px rgba(88, 0, 88, 0.4);
+}/*# sourceMappingURL=basic-tetris.css.map */
