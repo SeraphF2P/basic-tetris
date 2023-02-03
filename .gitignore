@@ -1,0 +1,5 @@
+**/node_modules
+**/.vscode
+**/basic-tetris.css.map
+**/basic-tetris.js.map
+**/HTML.code-workspace

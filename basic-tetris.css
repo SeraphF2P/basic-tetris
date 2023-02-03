@@ -3,21 +3,24 @@
 }
 
 body {
+  height: 100vh;
+  overflow: hidden;
   padding-top: 50px;
-  background-image: url("./pexels-damir-mijailovic-3695238.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
-body .backGroundImage {
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+body .backGroundImageWrapper {
+  position: absolute;
+  background-color: #ad3a9c;
+  z-index: -3;
+  overflow: hidden;
+  inset: 0;
+}
+body .backGroundImageWrapper .backGroundImage {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rebeccapurple;
-  z-index: -3;
 }
 body .container {
   display: grid;
